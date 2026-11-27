@@ -95,7 +95,11 @@
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
   @media (max-width:760px){
-    .links{display:none}
+    .links a{display:none}
+    .links a:first-child{display:inline;white-space:nowrap}
+    .wordmark{font-size:1.5rem}
+    .brand{gap:8px;min-width:0}
+    nav{gap:12px}
     .about-inner{grid-template-columns:1fr}
     .btn-ghost{margin:12px 0 0}
   }
