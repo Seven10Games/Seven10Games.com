@@ -128,6 +128,43 @@ body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);
 .tile:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 .controls{display:flex;gap:8px}
+/* Touch control pad: arrows on the left pick a present, blue selects it, red rotates it. Shown on touch screens only. */
+.pad{display:none;align-items:center;justify-content:space-between;gap:12px;padding:6px 4px 2px}
+.pad-mode .pad{display:flex}
+.pad-mode #rotBtn{display:none}
+.pad-mode footer{display:none}
+.pad-arrows,.pad-btns{display:flex;gap:10px;align-items:center}
+.pad-arrow{width:58px;height:52px;border-radius:14px;border:none;background:var(--panel-2);color:var(--ink);display:grid;place-items:center;box-shadow:inset 0 -3px 0 rgba(0,0,0,.35);touch-action:manipulation;cursor:pointer}
+.pad-arrow svg{width:26px;height:26px}
+.pad-btn{width:62px;height:62px;border-radius:50%;border:none;color:#fff;display:grid;place-items:center;font:900 10px var(--body);letter-spacing:.08em;text-transform:uppercase;touch-action:manipulation;cursor:pointer;box-shadow:inset 0 -4px 0 rgba(0,0,0,.3),0 4px 10px rgba(0,0,0,.35)}
+.pad-btn.blue{background:radial-gradient(circle at 35% 30%,#6fa8f5,#2f7de1 55%,#1d56a8)}
+.pad-btn.red{background:radial-gradient(circle at 35% 30%,#f07a70,#d9443b 55%,#9e2a23)}
+.pad-btn.red{margin-top:-14px}
+.pad-arrow:active,.pad-btn:active,.pad-arrow.press,.pad-btn.press{transform:translateY(2px);filter:brightness(1.15)}
+.pad-arrow:focus-visible,.pad-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.pad-mode .tile.hi{outline:2px dashed rgba(244,238,216,.85);outline-offset:-5px}
+/* Short phones with the pad: tighten everything so the box keeps its room. */
+@media (max-height:780px){
+  .pad-mode #app{gap:6px;padding-block:6px}
+  .pad-mode .hud{padding:4px 12px}
+  .pad-mode .hud .stat .num{font-size:15px}
+  .pad-mode .clock .num{font-size:22px}
+  .pad-mode .clock .lbl{display:none}
+  .pad-mode .goalstrip{padding:4px 12px;gap:10px}
+  .pad-mode .g-round .num{font-size:18px}
+  .pad-mode .g-nums b,.pad-mode .g-left .num{font-size:15px}
+  .pad-mode .g-bar{height:7px}
+  .pad-mode .side{gap:6px}
+  .pad-mode .side>.tray-head{display:none}
+  .pad-mode #tray .tile{height:52px;gap:0;font-size:10px}
+  .pad-mode .controls .btn{padding-block:8px;font-size:14px}
+  .pad-mode .pad{padding:2px 4px 0}
+  .pad-mode .pad-arrow{width:52px;height:44px}
+  .pad-mode .pad-btn{width:54px;height:54px}
+  .pad-mode .pad-btn.red{margin-top:-10px}
+  .pad-mode .board-wrap{min-height:120px}
+}
+
 .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;font:900 15px var(--body);padding:12px 10px;border-radius:12px;border:none;background:var(--panel-2);color:var(--ink);cursor:pointer;white-space:nowrap}
 .btn.primary{background:var(--gold);color:var(--gold-ink)}
 .btn.furnace{background:var(--fire);color:var(--fire-ink)}
@@ -275,15 +312,25 @@ footer{flex:none;text-align:center;font-size:11px;color:var(--muted);font-weight
       <button id="pauseBtn" class="btn icon" type="button" aria-label="Pause"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
       <button id="muteBtn" class="btn icon" type="button" aria-label="Sound"></button>
     </div>
+    <div class="pad" id="pad" aria-label="Touch controls">
+      <div class="pad-arrows">
+        <button class="pad-arrow" id="padUp" type="button" aria-label="Previous present"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+        <button class="pad-arrow" id="padDown" type="button" aria-label="Next present"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <div class="pad-btns">
+        <button class="pad-btn blue" id="padSel" type="button" aria-label="Select present"><span>Select</span></button>
+        <button class="pad-btn red" id="padRot" type="button" aria-label="Rotate present"><span>Rotate</span></button>
+      </div>
+    </div>
   </aside>
-  <footer>Designed and Created by Seven10Games · Demo v1776.1127.1</footer>
+  <footer>Designed and Created by Seven10 Games · Demo v1776.1127.3</footer>
 </div>
 <canvas id="float" hidden></canvas>
 <div id="overlay" class="overlay" hidden><div class="card" id="card"></div></div>
 <div id="title" class="title" hidden>
   <canvas id="titleCv" aria-hidden="true"></canvas>
   <div class="t-inner">
-    <p class="t-eyebrow">Seven10Games presents</p>
+    <p class="t-eyebrow">Seven10 Games presents</p>
     <h1 class="t-logo"><span>Present</span><span>Pack</span></h1>
     <p class="t-tag">Fill every box. Leave no holes. Beat the clock.</p>
     <p class="demo-badge"><b>Demo</b> <span id="tDemoLeft">10:00 of play</span></p>
@@ -295,7 +342,7 @@ footer{flex:none;text-align:center;font-size:11px;color:var(--muted);font-weight
     </div>
     <p id="tBest" class="t-best"></p>
   </div>
-  <div class="t-foot">Designed and Created by Seven10Games · Demo v1776.1127.1</div>
+  <div class="t-foot">Designed and Created by Seven10 Games · Demo v1776.1127.3</div>
 </div>
 <section id="editor" class="editor" hidden aria-label="Box builder">
   <div class="ed-head"><h2>Your boxes</h2><span class="ed-hint">Build up to 10 boxes. Custom games use only these.</span></div>
@@ -592,7 +639,7 @@ function renderTray(){
   tray.innerHTML='';
   S.hand.forEach((p,i)=>{
     const fits=S.running||!S.box?fitsAnywhere(p.type):true;
-    const b=document.createElement('button');b.type='button';b.className='tile'+(TYPES[p.type].special?' special':'')+(i===S.sel?' sel':'')+(fits?'':' nofit')+(i===freshSlot?' fresh':'');b.dataset.slot=i;
+    const b=document.createElement('button');b.type='button';b.className='tile'+(TYPES[p.type].special?' special':'')+(i===S.sel?' sel':'')+(i===S.hi?' hi':'')+(fits?'':' nofit')+(i===freshSlot?' fresh':'');b.dataset.slot=i;
     b.setAttribute('aria-label',`${TYPES[p.type].name} present, ${fmt(TYPES[p.type].val)}${fits?'':', will not fit'}`);
     const cv=document.createElement('canvas');drawTile(cv,p);
     const lab=document.createElement('span');lab.textContent=fmt(TYPES[p.type].val);
@@ -632,7 +679,22 @@ function onlySingleHoles(){
 }
 const holePenalty=n=>5*n*(n+1)/2;
 function canPlace(p,gx,gy){const{W,H}=S.box;for(const[x,y]of p.cells){const X=x+gx,Y=y+gy;if(X<0||Y<0||X>=W||Y>=H||S.grid[Y*W+X])return false}return true}
-function select(i){S.sel=i;updateTraySel();refreshGhost()}
+function select(i){S.sel=i;if(typeof i==='number')S.hi=i;updateTraySel();refreshHi();refreshGhost()}
+/* ---------- Touch control pad ---------- */
+S.hi=0;
+const padMode=window.matchMedia&&(matchMedia('(pointer: coarse)').matches||matchMedia('(hover: none)').matches);
+if(padMode)document.body.classList.add('pad-mode');
+function refreshHi(){for(const t of document.querySelectorAll('#tray .tile'))t.classList.toggle('hi',+t.dataset.slot===S.hi)}
+function buzz(){try{navigator.vibrate&&navigator.vibrate(8)}catch{}}
+function padMove(d){if(!S.running||S.paused)return;const n=S.hand.length;S.hi=(((S.hi??0)+d)%n+n)%n;refreshHi();tone(520,.03,'triangle',.04);buzz()}
+function padSelect(){if(!S.running||S.paused)return;select(S.hi??0);tone(700,.05,'triangle',.05);buzz()}
+function padRotate(){if(!S.running||S.paused)return;if(S.sel==null)select(S.hi??0);rotateSel();buzz()}
+for(const[id,fn]of[['padUp',()=>padMove(-1)],['padDown',()=>padMove(1)],['padSel',padSelect],['padRot',padRotate]]){
+  const el=$(id);
+  el.addEventListener('pointerdown',e=>{e.preventDefault();el.classList.add('press');fn()});
+  const up=()=>el.classList.remove('press');el.addEventListener('pointerup',up);el.addEventListener('pointerleave',up);el.addEventListener('pointercancel',up);
+  el.addEventListener('click',e=>{if(e.detail===0)fn()});
+}
 function rotateSel(){
   const p=selPiece();if(!p||!S.running||S.paused||TYPES[p.type].bag)return;
   p.cells=rot(p.cells);
