@@ -133,8 +133,10 @@ body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);
 .pad-mode .pad{display:flex}
 .pad-mode #rotBtn{display:none}
 .pad-mode footer{display:none}
-.pad-arrows,.pad-btns{display:flex;gap:10px;align-items:center}
-.pad-arrow{width:58px;height:52px;border-radius:14px;border:none;background:var(--panel-2);color:var(--ink);display:grid;place-items:center;box-shadow:inset 0 -3px 0 rgba(0,0,0,.35);touch-action:manipulation;cursor:pointer}
+.pad-btns{display:flex;gap:10px;align-items:center}
+.pad-arrows{display:grid;grid-template-columns:repeat(3,auto);grid-template-areas:". up ." "left down right";gap:6px}
+.pad-arrow.up{grid-area:up}.pad-arrow.left{grid-area:left}.pad-arrow.down{grid-area:down}.pad-arrow.right{grid-area:right}
+.pad-arrow{width:54px;height:46px;border-radius:14px;border:none;background:var(--panel-2);color:var(--ink);display:grid;place-items:center;box-shadow:inset 0 -3px 0 rgba(0,0,0,.35);touch-action:manipulation;cursor:pointer}
 .pad-arrow svg{width:26px;height:26px}
 .pad-btn{width:62px;height:62px;border-radius:50%;border:none;color:#fff;display:grid;place-items:center;font:900 10px var(--body);letter-spacing:.08em;text-transform:uppercase;touch-action:manipulation;cursor:pointer;box-shadow:inset 0 -4px 0 rgba(0,0,0,.3),0 4px 10px rgba(0,0,0,.35)}
 .pad-btn.blue{background:radial-gradient(circle at 35% 30%,#6fa8f5,#2f7de1 55%,#1d56a8)}
@@ -159,7 +161,8 @@ body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);
   .pad-mode #tray .tile{height:52px;gap:0;font-size:10px}
   .pad-mode .controls .btn{padding-block:8px;font-size:14px}
   .pad-mode .pad{padding:2px 4px 0}
-  .pad-mode .pad-arrow{width:52px;height:44px}
+  .pad-mode .pad-arrow{width:48px;height:38px}
+  .pad-mode .pad-arrows{gap:4px}
   .pad-mode .pad-btn{width:54px;height:54px}
   .pad-mode .pad-btn.red{margin-top:-10px}
   .pad-mode .board-wrap{min-height:120px}
@@ -314,8 +317,10 @@ footer{flex:none;text-align:center;font-size:11px;color:var(--muted);font-weight
     </div>
     <div class="pad" id="pad" aria-label="Touch controls">
       <div class="pad-arrows">
-        <button class="pad-arrow" id="padUp" type="button" aria-label="Previous present"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
-        <button class="pad-arrow" id="padDown" type="button" aria-label="Next present"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="pad-arrow up" id="padUp" type="button" aria-label="Up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+        <button class="pad-arrow left" id="padLeft" type="button" aria-label="Left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="pad-arrow down" id="padDown" type="button" aria-label="Down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <button class="pad-arrow right" id="padRight" type="button" aria-label="Right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
       <div class="pad-btns">
         <button class="pad-btn blue" id="padSel" type="button" aria-label="Select present"><span>Select</span></button>
@@ -323,7 +328,7 @@ footer{flex:none;text-align:center;font-size:11px;color:var(--muted);font-weight
       </div>
     </div>
   </aside>
-  <footer>Designed and Created by Seven10 Games · Demo v1776.1127.3</footer>
+  <footer>Designed and Created by Seven10 Games · Demo v1776.1127.4</footer>
 </div>
 <canvas id="float" hidden></canvas>
 <div id="overlay" class="overlay" hidden><div class="card" id="card"></div></div>
@@ -342,7 +347,7 @@ footer{flex:none;text-align:center;font-size:11px;color:var(--muted);font-weight
     </div>
     <p id="tBest" class="t-best"></p>
   </div>
-  <div class="t-foot">Designed and Created by Seven10 Games · Demo v1776.1127.3</div>
+  <div class="t-foot">Designed and Created by Seven10 Games · Demo v1776.1127.4</div>
 </div>
 <section id="editor" class="editor" hidden aria-label="Box builder">
   <div class="ed-head"><h2>Your boxes</h2><span class="ed-hint">Build up to 10 boxes. Custom games use only these.</span></div>
@@ -463,7 +468,7 @@ function newBox(info){
   S.draining=false;S.drainSecs=null;S.drainBonus=0;S.drainHold=0;$('drain').hidden=true;$('clock').classList.remove('draining');
   S.timeTotal=S.timeLeft=S.custom?customTime(info.cells,S.mode):boxTime(info.cells);
   S.hand=[];for(let i=0;i<HAND;i++)S.hand.push(randomPiece());
-  S.sel=0;ghost=null;
+  S.sel=padMode?null:0;padPos=null;ghost=null;
   $('modeLbl').textContent=MODE().name;$('boxNo').textContent=`${S.boxIdx+1} of ${S.owned.length}`;$('boxName').textContent=info.name;$('boxSize').textContent=`${info.W}×${info.H} · ${info.cells} spaces`;
   S.goalHit=S.roundEarned>=goalFor(S.round);
   layout();renderTray();updateHUD(true);
@@ -667,6 +672,7 @@ function updateSelInfo(){
   $('selInfo').innerHTML=p?`${TYPES[p.type].name} · <strong>${fmt(TYPES[p.type].val)}</strong>`:'Pick a present';
   $('rotBtn').disabled=!p||!S.running;$('tossBtn').disabled=!p||!S.running||isSpec(S.sel);
   $('tossCost').textContent='−$'+tossPrice();
+  if(typeof padLabels==='function')padLabels();
 }
 
 /* ---------- Actions ---------- */
@@ -679,27 +685,61 @@ function onlySingleHoles(){
 }
 const holePenalty=n=>5*n*(n+1)/2;
 function canPlace(p,gx,gy){const{W,H}=S.box;for(const[x,y]of p.cells){const X=x+gx,Y=y+gy;if(X<0||Y<0||X>=W||Y>=H||S.grid[Y*W+X])return false}return true}
-function select(i){S.sel=i;if(typeof i==='number')S.hi=i;updateTraySel();refreshHi();refreshGhost()}
+function select(i){S.sel=i;if(typeof i==='number')S.hi=i;updateTraySel();refreshHi();if(padMode&&S.running&&S.sel!=null&&selPiece())padStart();else refreshGhost()}
 /* ---------- Touch control pad ---------- */
 S.hi=0;
 const padMode=window.matchMedia&&(matchMedia('(pointer: coarse)').matches||matchMedia('(hover: none)').matches);
 if(padMode)document.body.classList.add('pad-mode');
 function refreshHi(){for(const t of document.querySelectorAll('#tray .tile'))t.classList.toggle('hi',+t.dataset.slot===S.hi)}
 function buzz(){try{navigator.vibrate&&navigator.vibrate(8)}catch{}}
-function padMove(d){if(!S.running||S.paused)return;const n=S.hand.length;S.hi=(((S.hi??0)+d)%n+n)%n;refreshHi();tone(520,.03,'triangle',.04);buzz()}
-function padSelect(){if(!S.running||S.paused)return;select(S.hi??0);tone(700,.05,'triangle',.05);buzz()}
-function padRotate(){if(!S.running||S.paused)return;if(S.sel==null)select(S.hi??0);rotateSel();buzz()}
-for(const[id,fn]of[['padUp',()=>padMove(-1)],['padDown',()=>padMove(1)],['padSel',padSelect],['padRot',padRotate]]){
-  const el=$(id);
-  el.addEventListener('pointerdown',e=>{e.preventDefault();el.classList.add('press');fn()});
-  const up=()=>el.classList.remove('press');el.addEventListener('pointerup',up);el.addEventListener('pointerleave',up);el.addEventListener('pointercancel',up);
+/* Pad, step 1: arrows move the highlight through your 8 presents (4 across, 2 down).
+   Step 2: blue picks it up and drops it into the box at the upper left; arrows steer it,
+   red rotates it, blue places it. Furnace discards it if it won't fit anywhere. */
+let padPos=null;
+const padActive=()=>padMode&&S.running&&!S.paused&&!S.draining&&S.sel!=null&&!!selPiece();
+function padShow(x,y){
+  const p=selPiece();if(!p)return;const{W,H}=S.box;
+  if(TYPES[p.type].bag){x=Math.max(0,Math.min(W-1,x));y=Math.max(0,Math.min(H-1,y));padPos={x,y};ghost=bagGhostAt(x,y)}
+  else{const[w,h]=dims(p.cells);x=Math.max(0,Math.min(Math.max(0,W-w),x));y=Math.max(0,Math.min(Math.max(0,H-h),y));padPos={x,y};ghost={x,y,ok:canPlace(p,x,y)}}
+  lastEv=null;draw();
+}
+function padStart(){padShow(0,0)}
+function padArrow(dx,dy){
+  if(!S.running||S.paused||S.draining)return;
+  if(S.sel!=null&&selPiece()){
+    const base=padPos||(ghost?{x:ghost.cx??ghost.x,y:ghost.cy??ghost.y}:{x:0,y:0});
+    padShow(base.x+dx,base.y+dy);tone(ghost&&ghost.ok?560:420,.025,'triangle',.035);buzz();return;
+  }
+  const n=S.hand.length,cols=4,i=S.hi??0;
+  let r=Math.floor(i/cols),c=i%cols;
+  if(dx){c=(c+dx+cols)%cols}if(dy){r=(r+dy+2)%2}
+  S.hi=Math.min(n-1,r*cols+c);refreshHi();tone(520,.03,'triangle',.04);buzz();
+}
+function padSelect(){
+  if(!S.running||S.paused||S.draining)return;
+  if(S.sel!=null&&selPiece()&&ghost){if(ghost.ok){padPos=null;placeSel()}else bad();buzz();return}
+  select(S.hi??0);tone(700,.05,'triangle',.05);buzz();
+}
+function padRotate(){
+  if(!S.running||S.paused||S.draining)return;
+  if(S.sel==null)select(S.hi??0);
+  rotateSel();if(padActive())padShow(padPos?padPos.x:0,padPos?padPos.y:0);buzz();
+}
+function padLabels(){const b=$('padSel');if(!b)return;const moving=S.sel!=null&&!!selPiece()&&S.running;
+  b.querySelector('span').textContent=moving?'Place':'Select';b.setAttribute('aria-label',moving?'Place present in the box':'Select present')}
+for(const[id,fn]of[['padUp',()=>padArrow(0,-1)],['padDown',()=>padArrow(0,1)],['padLeft',()=>padArrow(-1,0)],['padRight',()=>padArrow(1,0)],['padSel',padSelect],['padRot',padRotate]]){
+  const el=$(id);let rep=null;
+  const stop=()=>{el.classList.remove('press');clearTimeout(rep);rep=null};
+  el.addEventListener('pointerdown',e=>{e.preventDefault();el.classList.add('press');fn();
+    if(el.classList.contains('pad-arrow')){const go=()=>{fn();rep=setTimeout(go,90)};rep=setTimeout(go,320)}});
+  el.addEventListener('pointerup',stop);el.addEventListener('pointerleave',stop);el.addEventListener('pointercancel',stop);
   el.addEventListener('click',e=>{if(e.detail===0)fn()});
 }
 function rotateSel(){
   const p=selPiece();if(!p||!S.running||S.paused||TYPES[p.type].bag)return;
   p.cells=rot(p.cells);
   const t=document.querySelector(`.tray .tile[data-slot="${S.sel}"] canvas`);if(t)drawTile(t,p);
-  tone(620,.05,'triangle',.05);refreshGhost();if(!floatCv.hidden)drawFloat();
+  tone(620,.05,'triangle',.05);refreshGhost();if(padActive()&&padPos)padShow(padPos.x,padPos.y);if(!floatCv.hidden)drawFloat();
 }
 function refreshGhost(){if(lastEv&&(ghost||drag))setGhost(lastEv,lastLift);else draw()}
 function placeSel(){
@@ -728,6 +768,7 @@ function tossSel(){
   popAt('−$'+cost,r.left+r.width/2,r.top,'minus');
   tone(180,.3,'sawtooth',.05,.4);tone(90,.35,'triangle',.06,.6);
   ghost=null;renderTray();updateHUD(true);draw();
+  if(padMode&&S.sel!=null&&selPiece())padStart();
 }
 function bad(){tone(150,.14,'square',.05,.8);board.classList.remove('shake');void board.offsetWidth;board.classList.add('shake')}
 function popAt(txt,x,y,cls){const d=document.createElement('div');d.className='pop'+(cls?' '+cls:'');d.textContent=txt;d.style.left=x+'px';d.style.top=y+'px';document.body.append(d);setTimeout(()=>d.remove(),950)}
