@@ -37,23 +37,45 @@
 </div>
 
 <!-- ============ PUBLISHED ============
-     Games that are out now. To add one, copy a whole <div class="card"> ... </div> block. -->
+     Games that are out now. When a game is published, move its card here
+     and change its tag to: <div class="tag published">Available Now</div> -->
 <section>
   <div class="wrap">
     <div class="section-label"><h2>Published</h2><span class="count">Out now</span></div>
+    <!-- Delete this "empty" box once the first game is published, and put a <div class="grid"> with the cards here -->
+    <div class="empty">
+      <b>Nothing published just yet</b>
+      Our first games are in testing now. Check back soon!
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTING ============ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-label"><h2>Testing</h2><span class="count">Coming soon!</span></div>
     <div class="grid">
 
       <div class="card">
         <div class="thumb" style="background:linear-gradient(135deg,#8a5a14,#d18b26)">🚚 PACKAGE EXPRESS</div>
         <div class="card-body">
-          <div class="tag published">Available Now</div>
+          <div class="tag testing">Testing · Coming Soon</div>
           <h3>Package Express</h3>
           <p>Hit the road and deliver every package on time.</p>
-          <div class="meta"><span>📱 Android</span><span>👤 1 player</span></div>
           <div class="btn-row">
-            <!-- Paste the real Google Play link in place of the # below -->
-            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Get it on Google Play</a>
-            <a class="btn btn-ghost btn-sm" href="/play/package-express/">▶ Play Demo</a>
+            <a class="btn btn-primary btn-sm" href="/play/package-express/">▶ Play Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb" style="background:linear-gradient(135deg,#2e7d4f,#e86a9c)">🌷 BACKYARD BLOOM</div>
+        <div class="card-body">
+          <div class="tag testing">Testing · Coming Soon</div>
+          <h3>Backyard Bloom</h3>
+          <p>Grow your own backyard garden!</p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="/play/Backyard%20bloom/">▶ Play Demo</a>
           </div>
         </div>
       </div>
@@ -63,9 +85,9 @@
 </section>
 
 <!-- ============ IN DEVELOPMENT ============ -->
-<section class="alt">
+<section>
   <div class="wrap">
-    <div class="section-label"><h2>In Development</h2><span class="count">Coming soon</span></div>
+    <div class="section-label"><h2>In Development</h2><span class="count">Being built now</span></div>
     <div class="grid">
 
       <div class="card">
@@ -73,23 +95,9 @@
         <div class="card-body">
           <div class="tag dev">In Development</div>
           <h3>Present Pack</h3>
-          <p>Fit every present into the box before time runs out.</p>
-          <div class="meta"><span>📱 Android</span><span>🧩 Puzzle</span></div>
+          <p>Complete the boxes of presents and ship them out!</p>
           <div class="btn-row">
             <a class="btn btn-ghost btn-sm" href="/play/present-pack/">▶ Play Demo</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="thumb" style="background:linear-gradient(135deg,#2e7d4f,#e86a9c)">🌷 BACKYARD BLOOM</div>
-        <div class="card-body">
-          <div class="tag dev">In Development</div>
-          <h3>Backyard Bloom</h3>
-          <p>Grow your own backyard garden!</p>
-          <div class="meta"><span>🌱 Cozy</span></div>
-          <div class="btn-row">
-            <a class="btn btn-ghost btn-sm" href="/play/Backyard%20bloom/">▶ Play Demo</a>
           </div>
         </div>
       </div>
@@ -99,8 +107,17 @@
         <div class="card-body">
           <div class="tag dev">In Development</div>
           <h3>American Football</h3>
-          <p>Classic 2D, retro-style football action. Call the play, break the tackle, take it to the house.</p>
-          <div class="meta"><span>🏈 Sports</span><span>🕹️ Retro</span></div>
+          <p>It is American football at its finest.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb" style="background:linear-gradient(135deg,#1d3f8f 0%,#1d3f8f 50%,#a3262a 50%,#a3262a 100%)">🚩 FLAGFALL</div>
+        <div class="card-body">
+          <div class="tag dev">In Development</div>
+          <h3>Flagfall</h3>
+          <p>3D Capture the Flag. Play a variety of maps with 5 to 12 people and go find the opponent’s flag.</p>
+          <div class="meta"><span>👥 5–12 players</span><span>🗺️ Multiple maps</span></div>
         </div>
       </div>
 
