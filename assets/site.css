@@ -66,6 +66,9 @@ section.alt .card{background:var(--navy)}
 .tag{align-self:flex-start;font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:10px}
 .tag.published{background:rgba(46,160,90,.2);color:#9be3b4}
 .tag.dev{background:rgba(224,160,48,.18);color:#ffd68a}
+.tag.testing{background:rgba(47,125,225,.22);color:#a9cdff}
+.empty{border:2px dashed rgba(207,230,255,.18);border-radius:18px;padding:44px 24px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--white);font-size:1.15rem;margin-bottom:4px}
 .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .meta span{font-size:.8rem;color:var(--ice);background:rgba(207,230,255,.08);padding:4px 10px;border-radius:8px}
 
