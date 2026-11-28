@@ -1,0 +1,96 @@
+/* ==========================================================
+   Seven10 Games — shared styles for every page
+   Change a color here and it changes across the whole site.
+   ========================================================== */
+:root{
+  --navy:#0b1a33;
+  --navy-2:#12264a;
+  --blue:#2f7de1;
+  --ice:#cfe6ff;
+  --white:#ffffff;
+  --muted:#9fb3cf;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--navy);color:var(--white);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ---------- Top menu ---------- */
+header{position:sticky;top:0;z-index:10;background:rgba(11,26,51,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(207,230,255,.08)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{height:44px;width:44px;object-fit:cover;border-radius:50%;border:2px solid rgba(47,125,225,.6)}
+.wordmark{font-family:"Bebas Neue",sans-serif;font-size:1.9rem;letter-spacing:2px;line-height:1}
+.wordmark span{color:var(--blue)}
+.links{display:flex;align-items:center;gap:28px;font-weight:600;font-size:.95rem}
+.links a{color:var(--muted);transition:color .2s}
+.links a:hover,.links a.active{color:var(--white)}
+.links a.play-link{color:var(--white);background:var(--blue);padding:7px 16px;border-radius:999px;white-space:nowrap}
+.links a.play-link:hover{background:#4a91ec}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-block;padding:14px 30px;border-radius:999px;font-weight:800;letter-spacing:.5px;transition:transform .15s,background .2s,border-color .2s}
+.btn-primary{background:var(--blue);color:var(--white)}
+.btn-primary:hover{transform:translateY(-2px);background:#4a91ec}
+.btn-ghost{border:2px solid rgba(207,230,255,.35)}
+.btn-ghost:hover{border-color:var(--ice)}
+.btn-sm{padding:9px 18px;font-size:.85rem}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ---------- Page sections ---------- */
+section{padding:90px 0}
+section[id]{scroll-margin-top:68px}
+section.alt{background:var(--navy-2)}
+.eyebrow{color:var(--blue);font-weight:800;letter-spacing:3px;font-size:.8rem;text-transform:uppercase}
+h1,h2{font-family:"Bebas Neue",sans-serif;letter-spacing:2px;line-height:1}
+h2{font-size:clamp(2.4rem,5vw,3.4rem);margin:8px 0 18px}
+.lead{color:var(--ice);font-size:1.1rem;max-width:680px;margin-bottom:40px}
+.center{text-align:center}
+.center .lead{margin-left:auto;margin-right:auto}
+
+/* Page title banner (Video Games / Board Games pages) */
+.page-hero{padding:80px 0 40px;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(47,125,225,.25),transparent 65%)}
+.page-hero h1{font-size:clamp(3rem,8vw,5rem);letter-spacing:3px;margin:8px 0 16px}
+.page-hero p{color:var(--ice);max-width:620px;margin:0 auto;font-size:1.1rem}
+
+/* ---------- Grids & cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:var(--navy-2);border:1px solid rgba(207,230,255,.1);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+section.alt .card{background:var(--navy)}
+.thumb{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-family:"Bebas Neue",sans-serif;font-size:2.1rem;letter-spacing:2px;text-align:center;padding:0 12px}
+.card-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:1.3rem;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.95rem;flex:1}
+.card .btn-row{margin-top:18px}
+.tag{align-self:flex-start;font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.tag.published{background:rgba(46,160,90,.2);color:#9be3b4}
+.tag.dev{background:rgba(224,160,48,.18);color:#ffd68a}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.meta span{font-size:.8rem;color:var(--ice);background:rgba(207,230,255,.08);padding:4px 10px;border-radius:8px}
+
+/* Small info boxes (process steps, favorites, goals) */
+.box{background:var(--navy-2);border:1px solid rgba(207,230,255,.08);border-radius:16px;padding:26px}
+section.alt .box{background:var(--navy)}
+.box .icon{font-size:2rem;margin-bottom:10px}
+.box .num{font-family:"Bebas Neue",sans-serif;font-size:2.4rem;color:var(--blue);line-height:1;margin-bottom:8px}
+.box h3{font-size:1.15rem;margin-bottom:6px}
+.box p{color:var(--muted);font-size:.95rem}
+
+.section-label{display:flex;align-items:center;gap:14px;margin:0 0 24px}
+.section-label h2{margin:0}
+.section-label .count{color:var(--muted);font-weight:600}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid rgba(207,230,255,.08);padding:28px 0;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+footer a:hover{color:var(--white)}
+
+/* ---------- Phones ---------- */
+@media (max-width:760px){
+  .links a{display:none}
+  .links a.play-link{display:inline}      /* only "Play Free" shows on phones */
+  .wordmark{font-size:1.5rem}
+  .brand{gap:8px}
+  section{padding:64px 0}
+}

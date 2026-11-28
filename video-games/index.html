@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Games — Seven10 Games</title>
+<meta name="description" content="Video games by Seven10 Games: what's out now and what we're working on next.">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="/" class="brand">
+      <img src="/assets/icon.jpg" alt="Seven10 Games husky logo">
+      <div class="wordmark">SEVEN<span>10</span> GAMES</div>
+    </a>
+    <div class="links">
+      <a href="/video-games/" class="active">Video Games</a>
+      <a href="/board-games/">Board Games</a>
+      <a href="/#contact">Contact</a>
+      <a href="/play/" class="play-link">▶ Play Free</a>
+    </div>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Play on screen</div>
+    <h1>Video Games</h1>
+    <p>Games for your phone and your browser, built and playtested by our family.</p>
+  </div>
+</div>
+
+<!-- ============ PUBLISHED ============
+     Games that are out now. To add one, copy a whole <div class="card"> ... </div> block. -->
+<section>
+  <div class="wrap">
+    <div class="section-label"><h2>Published</h2><span class="count">Out now</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="thumb" style="background:linear-gradient(135deg,#8a5a14,#d18b26)">🚚 PACKAGE EXPRESS</div>
+        <div class="card-body">
+          <div class="tag published">Available Now</div>
+          <h3>Package Express</h3>
+          <p>Hit the road and deliver every package on time.</p>
+          <div class="meta"><span>📱 Android</span><span>👤 1 player</span></div>
+          <div class="btn-row">
+            <!-- Paste the real Google Play link in place of the # below -->
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Get it on Google Play</a>
+            <a class="btn btn-ghost btn-sm" href="/play/package-express/">▶ Play Demo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ IN DEVELOPMENT ============ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-label"><h2>In Development</h2><span class="count">Coming soon</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="thumb" style="background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18),transparent 55%),linear-gradient(135deg,#b03a2e,#e0573f)">🎁 PRESENT PACK</div>
+        <div class="card-body">
+          <div class="tag dev">In Development</div>
+          <h3>Present Pack</h3>
+          <p>Fit every present into the box before time runs out.</p>
+          <div class="meta"><span>📱 Android</span><span>🧩 Puzzle</span></div>
+          <div class="btn-row">
+            <a class="btn btn-ghost btn-sm" href="/play/present-pack/">▶ Play Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb" style="background:linear-gradient(135deg,#2e7d4f,#e86a9c)">🌷 BACKYARD BLOOM</div>
+        <div class="card-body">
+          <div class="tag dev">In Development</div>
+          <h3>Backyard Bloom</h3>
+          <p>Grow your own backyard garden!</p>
+          <div class="meta"><span>🌱 Cozy</span></div>
+          <div class="btn-row">
+            <a class="btn btn-ghost btn-sm" href="/play/Backyard%20bloom/">▶ Play Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb" style="background:repeating-linear-gradient(90deg,transparent 0 38px,rgba(255,255,255,.18) 38px 40px),linear-gradient(135deg,#1f6b34,#2e8b45)">🏈 AMERICAN FOOTBALL</div>
+        <div class="card-body">
+          <div class="tag dev">In Development</div>
+          <h3>American Football</h3>
+          <p>Classic 2D, retro-style football action. Call the play, break the tackle, take it to the house.</p>
+          <div class="meta"><span>🏈 Sports</span><span>🕹️ Retro</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> Seven10 Games. All rights reserved.</span>
+    <span><a href="/">Home</a> · <a href="/board-games/">Board Games</a> · <a href="/play/">Play Free</a> · <a href="mailto:support@seven10games.com">support@seven10games.com</a></span>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

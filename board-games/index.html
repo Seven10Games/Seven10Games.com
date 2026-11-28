@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Games — Seven10 Games</title>
+<meta name="description" content="Board games by Seven10 Games: what's out now and what we're working on next.">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .board-thumb{color:var(--navy);background:
+      linear-gradient(45deg,rgba(11,26,51,.12) 25%,transparent 25%,transparent 75%,rgba(11,26,51,.12) 75%),
+      linear-gradient(45deg,rgba(11,26,51,.12) 25%,transparent 25%,transparent 75%,rgba(11,26,51,.12) 75%),
+      linear-gradient(135deg,#cfe6ff,#8fbdf2);background-size:40px 40px,40px 40px,auto;background-position:0 0,20px 20px,0 0}
+  .board-thumb.purple{color:var(--white);background:
+      linear-gradient(45deg,rgba(255,255,255,.08) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.08) 75%),
+      linear-gradient(45deg,rgba(255,255,255,.08) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.08) 75%),
+      linear-gradient(135deg,#6b3fa0,#b0558f);background-size:40px 40px,40px 40px,auto;background-position:0 0,20px 20px,0 0}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="/" class="brand">
+      <img src="/assets/icon.jpg" alt="Seven10 Games husky logo">
+      <div class="wordmark">SEVEN<span>10</span> GAMES</div>
+    </a>
+    <div class="links">
+      <a href="/video-games/">Video Games</a>
+      <a href="/board-games/" class="active">Board Games</a>
+      <a href="/#contact">Contact</a>
+      <a href="/play/" class="play-link">▶ Play Free</a>
+    </div>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Play at the table</div>
+    <h1>Board Games</h1>
+    <p>Games for the kitchen table: designed, drawn, and playtested on our own family game nights.</p>
+  </div>
+</div>
+
+<!-- ============ PUBLISHED ============
+     Games that are out now. To add one, copy a whole <div class="card"> ... </div> block. -->
+<section>
+  <div class="wrap">
+    <div class="section-label"><h2>Published</h2><span class="count">Out now</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="thumb board-thumb">🎲 GAME TITLE</div>
+        <div class="card-body">
+          <div class="tag published">Available Now</div>
+          <h3>Game Title</h3>
+          <p>One or two lines about the game: what it’s about and what makes it fun.</p>
+          <div class="meta"><span>👥 2–4 players</span><span>⏱ 30 min</span><span>🎂 Ages 8+</span></div>
+          <div class="btn-row">
+            <!-- Put your store link (Etsy, Amazon, your shop, etc.) in place of the # below -->
+            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener">Buy Now</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ IN DEVELOPMENT ============ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-label"><h2>In Development</h2><span class="count">Coming soon</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="thumb board-thumb purple">♟️ GAME TITLE</div>
+        <div class="card-body">
+          <div class="tag dev">In Development</div>
+          <h3>Game Title</h3>
+          <p>A sneak peek at what we’re working on. Share as much or as little as you like.</p>
+          <div class="meta"><span>👥 2–6 players</span><span>⏱ 45 min</span><span>🎂 Ages 10+</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="thumb board-thumb purple">🃏 GAME TITLE</div>
+        <div class="card-body">
+          <div class="tag dev">In Development</div>
+          <h3>Game Title</h3>
+          <p>A sneak peek at what we’re working on. Share as much or as little as you like.</p>
+          <div class="meta"><span>👥 2–4 players</span><span>⏱ 20 min</span><span>🎂 Ages 6+</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> Seven10 Games. All rights reserved.</span>
+    <span><a href="/">Home</a> · <a href="/video-games/">Video Games</a> · <a href="/play/">Play Free</a> · <a href="mailto:support@seven10games.com">support@seven10games.com</a></span>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
